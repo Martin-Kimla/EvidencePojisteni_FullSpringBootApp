@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div class="potvrzovaciZprava" th:text="${success}" th:if="${success}"></div>
+
+<article>
+  <header class="headerDetail">
+    <img class="avatar" th:src="@{/images/avatar.PNG}"/>
+    <div>
+      <h1 class="headerH1" th:text="${insured.jmeno + ' ' + insured.prijmeni}"></h1>
+      <div class="detailAdresy">
+        <div class="detailAdresy2">
+          <div class="detailAdresyRadkovani" th:text="${insured.ulice}"></div>
+          <div class="detailAdresyRadkovani" th:text="${insured.mesto}"></div>
+          <div class="detailAdresyRadkovani" th:text="${insured.psc}"></div>
+        </div>
+        <div class="detailAdresy3">
+          <div class="detailAdresyRadkovani" th:text="${insured.email}"></div>
+          <div th:text="${insured.telefon}"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <h1 class="headerH1Detail">Sjednaná pojištění</h1>
+    <table id="tabulkaPojistenci">
+      <thead>
+      <td class="sirkaBunky">
+        <strong>Název pojištění</strong>
+      </td>
+      <td class="sirkaBunky">
+        <strong>Pojistný limit</strong>
+      </td>
+      <td sec:authorize="hasRole('ADMIN')">
+
+      </td>
+      </thead>
+      <tbody>
+      <tr th:each="insurance: ${insurancesFilter}">
+        <td><a th:href="@{'/insurance/' + ${insurance.insuranceId}}" th:text="${insurance.insuranceTitle}"></a></td>
+        <td th:text="${insurance.insuranceAmount + ' Kč'}"></td>
+        <td sec:authorize="hasRole('ADMIN')">
+          <a class="tlacitkoCervene" th:href="@{'/insured/delete/' + ${insured.insuredId} + '/' + ${insurance.insuranceId}}">Odstranit</a>
+          <a class="tlacitkoZlute" th:href="@{'/insurance/edit/' + ${insurance.insuranceId}}">Editovat</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div sec:authorize="hasRole('ADMIN')" class="detailTlacitka">
+      <a class="tlacitkoModreDetail" th:href="@{'/insured/connection/' + ${insured.insuredId}}">Přidat pojištění</a>
+      <a class="tlacitkoZlute" th:href="@{'/insured/edit/' + ${insured.insuredId}}">Editovat pojištěnce</a>
+      <a class="tlacitkoCervene" th:href="@{'/insured/delete/' + ${insured.insuredId}}">Odstranit pojištěnce</a>
+    </div>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+    <header class="articleHeader">
+        <h1 class="headerH1">Registrace</h1>
+    </header>
+    <section>
+        <form method="post" th:action="@{/account/register}" th:object="${userDTO}">
+            <div class="formular">
+                <div>
+                    <label>Uživatelský email</label><br />
+                    <input class="input" name="email" th:field="*{email}" /><br />
+                    <small class="chybovaHlaska" th:errors="*{email}">
+                    </small>
+                </div>
+                <div>
+                    <label>Heslo</label><br />
+                    <input type="password" class="input" name="password" th:field="*{password}"/><br />
+                    <small class="chybovaHlaska" th:errors="*{password}">
+                    </small>
+                </div>
+            </div>
+            <div class="formular2">
+                <div>
+                    <label>Heslo pro zopakování</label><br />
+                    <input type="password" class="input" name="password" th:field="*{confirmPassword}"/><br />
+                    <small class="chybovaHlaska" th:errors="*{confirmPassword}">
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button class="tlacitkoModreSubmit" type="submit">Registrovat</button>
+            </div>
+        </form>
+    </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

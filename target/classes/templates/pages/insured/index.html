@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<div class="potvrzovaciZprava" th:text="${success}" th:if="${success}"></div>
+
+<article>
+  <header class="articleHeader">
+    <h1 class="headerH1">Pojištěnci</h1>
+    <div sec:authorize="hasRole('ADMIN')" class="headerDiv">
+      <a class="tlacitkoModre" th:href="@{/insured/create}">Nový pojištěnec</a>
+    </div>
+  </header>
+  <section>
+    <table id="tabulkaPojistenci">
+      <thead>
+        <td class="sirkaBunky">
+          <strong>Jméno</strong>
+        </td>
+        <td class="sirkaBunky">
+          <strong>Bydliště</strong>
+        </td>
+        <td sec:authorize="hasRole('ADMIN')">
+
+        </td>
+      </thead>
+      <tbody>
+      <tr th:each="insured: ${insured}">
+        <td><a th:href="@{'/insured/' + ${insured.insuredId}}" th:text="${insured.jmeno + ' ' + insured.prijmeni}"></a></td>
+        <td th:text="${insured.ulice + ', ' + insured.mesto}"></td>
+        <td sec:authorize="hasRole('ADMIN')">
+          <a class="tlacitkoCervene" <a th:href="@{'/insured/delete/' + ${insured.insuredId}}">Odstranit</a>
+          <a class="tlacitkoZlute" th:href="@{'/insured/edit/' + ${insured.insuredId}}">Editovat</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

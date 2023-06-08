@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/styles/AppStyles3.css}" type="text/css" />
+  <title>PojištěníApp</title>
+</head>
+<body>
+
+  <header class="header" th:fragment="header">
+    <div>
+      <h1 id="logo"><a class="logoOdkaz"th:href="@{/}">PojištěníApp</a></h1>
+    </div>
+    <nav>
+      <ul class="menuList">
+        <li class="menuListPolozky"><a class="odkazMenu" th:href="@{/insured}">Pojištěnci</a></li>
+        <li class="menuListPolozky"><a class="odkazMenu" th:href="@{/insurance}">Pojištění</a></li>
+        <li class="menuListPolozky"><a class="odkazMenu" th:href="@{/oAplikaci}">O&nbsp;aplikaci</a></li>
+      </ul>
+    </nav>
+    <div>
+      <ul class="menuList">
+        <li sec:authorize="isAnonymous()" class="menuListPolozky"><a class="aktivni" th:href="@{/account/login}">Přihlásit</a></li>
+        <li sec:authorize="isAnonymous()" class="menuListPolozky"><a th:href="@{/account/register}">Registrovat</a></li>
+        <li class="menuListPolozky">
+          <form method="post" th:action="@{/account/logout}">
+            <button class="tlacitkoOdhlasit" sec:authorize="isAuthenticated()">Odhlásit&nbsp;se</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <footer th:fragment="footer">
+    Vytvořil &copy;Martin Kimla 2023
+  </footer>
+
+</body>
+</html>

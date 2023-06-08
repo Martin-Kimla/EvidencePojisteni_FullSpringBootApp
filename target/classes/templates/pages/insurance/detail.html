@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+  <header class="headerDetail">
+    <img class="avatar" th:src="@{/images/avatar2.PNG}"/>
+    <div>
+      <h1 class="headerH1" th:text="${insurance.insuranceTitle}"></h1>
+      <div class="detailAdresy">
+        <div class="detailAdresy2">
+          <div class="detailAdresyRadkovani" th:text="${'Pojistný limit: ' + insurance.insuranceAmount + ' Kč'}"></div>
+          <div class="detailAdresyRadkovani" th:text="${'Platnost od: ' + insurance.validFrom}"></div>
+          <div class="detailAdresyRadkovani" th:text="${'Platnost do: ' + insurance.validTo}"></div>
+        </div>
+        <div class="detailAdresy3">
+          <div th:text="${'Předmět pojištění: ' + insurance.insuranceType}"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div sec:authorize="hasRole('ADMIN')" class="detailTlacitka">
+      <a class="tlacitkoZlute" th:href="@{'/insurance/edit/' + ${insurance.insuranceId}}">Editovat pojištění</a>
+      <a class="tlacitkoCervene" th:href="@{'/insurance/delete/' + ${insurance.insuranceId}}">Odstranit pojištění</a>
+    </div>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>
