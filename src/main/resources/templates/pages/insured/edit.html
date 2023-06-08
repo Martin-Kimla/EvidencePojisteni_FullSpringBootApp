@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+  <header class="articleHeader">
+    <h1 class="headerH1">Editace pojištěnce</h1>
+  </header>
+  <section>
+    <form method="post" th:action="@{'/insured/edit/' + ${insuredId}}" th:object="${insuredDTO}">
+      <div class="formular">
+        <div>
+          <label>Jméno</label><br />
+          <input class="input" placeholder="Jan" th:field="*{jmeno}" />
+        </div>
+        <div>
+          <label>Příjmení</label><br />
+          <input class="input" placeholder="Novák" th:field="*{prijmeni}" />
+        </div>
+      </div>
+      <div class="formular2">
+        <div>
+          <label>Email</label><br />
+          <input type="email" class="input" placeholder="jannovak@seznam.cz" th:field="*{email}" />
+        </div>
+        <div>
+          <label>Telefon</label><br />
+          <input type="tel" class="input" placeholder="724 123 456" th:field="*{telefon}" />
+        </div>
+      </div>
+      <div class="formular2">
+        <div>
+          <label>Ulice a číslo popisné</label><br />
+          <input class="input" placeholder="Ve Svahu 3" th:field="*{ulice}" />
+        </div>
+        <div>
+          <label>Město</label><br />
+          <input class="input" placeholder="Praha" th:field="*{mesto}" />
+        </div>
+      </div>
+      <div class="formular2">
+        <div>
+          <label>PSČ</label><br />
+          <input type="number" class="input" placeholder="100 00" th:field="*{psc}" />
+        </div>
+      </div>
+
+      <div>
+        <button class="tlacitkoModreSubmit" type="submit">Uložit</button>
+      </div>
+    </form>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

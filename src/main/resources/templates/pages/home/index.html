@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+  <header th:replace="~{fragments/layout.html :: header}"></header>
+
+  <article>
+    <header class="articleHeader">
+      <h1 class="headerH1">PojištěníApp</h1>
+    </header>
+    <section>
+      <p>
+        Aplikace podporuje uživatelské role (uživatel, administrátor). Uživatel má omezené práva (nemůže editovat data) a není mu zobrazena plná funcionalita aplikace.
+      </p>
+      <p>
+        Pro vyzkoušení veškerých možností se můžete přihlásit pod těmito údaji:
+      </p>
+      <ul>
+        <li>email: admin@admin.com</li>
+        <li>heslo: adminadmin</li>
+      </ul>
+    </section>
+  </article>
+
+  <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

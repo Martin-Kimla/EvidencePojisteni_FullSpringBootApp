@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+  <header class="articleHeader">
+    <h1 class="headerH1">Editace pojištění</h1>
+  </header>
+  <section>
+    <form method="post" th:action="@{'/insurance/edit/' + ${insuranceId}}" th:object="${insuranceDTO}">
+      <div class="formular">
+        <div>
+          <label>Titulek pojištění</label><br />
+          <input class="inputDlouhy" th:field="*{insuranceTitle}" /><br />
+          <small class="chybovaHlaska" th:errors="*{insuranceTitle}"></small>
+        </div>
+      </div>
+      <div class="formular2">
+        <div>
+          <label>Částka</label><br />
+          <input type="number" class="input" th:field="*{insuranceAmount}" /><br />
+          <small class="chybovaHlaska" th:errors="*{insuranceAmount}"></small>
+        </div>
+        <div>
+          <label>Předmět pojištění</label><br />
+          <input class="input" th:field="*{insuranceType}" /><br />
+          <small class="chybovaHlaska" th:errors="*{insuranceType}"></small>
+        </div>
+      </div>
+      <div class="formular2">
+        <div>
+          <label>Platnost od</label><br />
+          <input type="date" class="input" th:field="*{validFrom}" /><br />
+          <small class="chybovaHlaska" th:errors="*{validFrom}"></small>
+        </div>
+        <div>
+          <label>Platnost do</label><br />
+          <input type="date" class="input" th:field="*{validTo}" /><br />
+          <small class="chybovaHlaska" th:errors="*{validTo}"></small>
+        </div>
+      </div>
+      <div>
+        <button class="tlacitkoModreSubmit" type="submit">Uložit</button>
+      </div>
+    </form>
+  </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>

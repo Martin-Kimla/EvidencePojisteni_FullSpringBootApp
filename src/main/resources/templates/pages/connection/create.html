@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+<body>
+
+<header th:replace="~{fragments/layout.html :: header}"></header>
+
+<article>
+    <header class="articleHeader">
+        <h1 class="headerH1" th:text="${'Přidat pojištění k ' + insured.jmeno + ' ' + insured.prijmeni}"></h1>
+    </header>
+    <section>
+        <form method="post" th:action="@{'/insured/connection/' + ${insuredId}}" th:object="${connectionDTO}">
+            <div class="formular">
+                <div>
+                    <label>Pojištění</label><br />
+                    <select class="inputDlouhy" th:field="*{insuranceId}"/>
+                        <option th:each="insurance: ${insurances}" th:text="${insurance.insuranceTitle}" th:value="${insurance.insuranceId}" >
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button class="tlacitkoModreSubmit" type="submit">Uložit</button>
+            </div>
+        </form>
+    </section>
+</article>
+
+<footer th:replace="~{fragments/layout.html :: footer}"></footer>
+
+</body>
+</html>
